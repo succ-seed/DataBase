@@ -11,14 +11,22 @@ CREATE TABLE userInfo(
         number VARCHAR(10) UNIQUE NOT NULL,
         dateJoined DATE NOT NULL,
         enabled BIT NOT NULL DEFAULT 1,
+        profilePicturePath VARCHAR(255),
+        dailyLimit DECIMAL(10,2) CONSTRAINT def_limit DEFAULT 5000
 
         
 
 );
 
---  insertion testing
-INSERT INTO userInfo (username, password, number, dateJoined, enabled)
-VALUES ('johndoe', '1234', '1234567890', '2024-09-14', 1);
+-- ALTER TABLE userInfo
+-- ADD dailyLimit DECIMAL(10,2) NULL;
+
+-- select * from userInfo
+
+
+-- --  insertion testing
+-- INSERT INTO userInfo (username, password, number, dateJoined, enabled)
+-- VALUES ('johndoe', '1234', '1234567890', '2024-09-14', 1);
 
 
 
@@ -65,12 +73,12 @@ CREATE TABLE category(
 );
 
 
---  DO NOT RUN THIS
+-- --  DO NOT RUN THIS
 -- ALTER TABLE category
--- ALTER COLUMN color varchar(7);
+-- ALTER userId ON DELETE ;
 
--- DELETE FROM category
--- WHERE catId = 4
+-- -- DELETE FROM category
+-- -- WHERE catId = 4
 -- SELECT * from category
 
 
@@ -102,14 +110,14 @@ CREATE TABLE expense(
 
 
 
-SELECT * from   expense
+-- SELECT * from   expense
 
--- for tyo custom expense button jasto
-SELECT eId,remarks,timeAdded,color,amount
-from expense e
-JOIN category c
-on e.catId = c.catId
-WHERE e.userId = 1 AND c.userId = 1 AND c.enabled = 1 AND c.catId IN (2,3)
+-- -- for tyo custom expense button jasto
+-- SELECT eId,remarks,timeAdded,color,amount
+-- from expense e
+-- JOIN category c
+-- on e.catId = c.catId
+-- WHERE e.userId = 1 AND c.userId = 1 AND c.enabled = 1 AND c.catId IN (2,3)
 
 
 
@@ -125,3 +133,19 @@ WHERE e.userId = 1 AND c.userId = 1 AND c.enabled = 1 AND c.catId IN (2,3)
 -- </connectionStrings>
 
 -- 
+
+
+
+-- SELECT SUM(amount)
+-- 	FROM expense e
+--     JOIN category c
+--     on e.catId = c.catId
+-- 	WHERE e.userId =1  AND e.dateAdded = '2024-09-24' AND e.enabled = 1  and c.enabled = 1
+
+
+
+
+-- UPDATE userInfo
+--     SET enabled = 0, username = 'random11DELETED'
+--     WHERE id = 13
+--     SELECT * from userInfo
